@@ -1,11 +1,9 @@
 import axios from 'axios';
+import { api } from "@/utils/api";
 
 export async function fetchTasks(){
-    // return(await axios.get('http://localhost:8000/api/tasks')).data;
-
-    const { data } = await axios.get("http://localhost:8000/api/tasks");
-    console.log("Fetched tasks:", data);  // レスポンスを確認
-    return data;  // data が直接配列ならそのままでOK
+    const response = await api.get('/tasks');
+    return response.data;
 }
 
 export async function createTask(title: string){
