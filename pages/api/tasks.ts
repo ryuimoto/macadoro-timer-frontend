@@ -7,5 +7,15 @@ export async function fetchTasks(){
 }
 
 export async function createTask(title: string){
-    return (await axios.post('http://localhost:8000/api/tasks',{title})).data;
+    const response = await api.post('/tasks', { title });
+    return response.data;
+}
+
+export async function deleteTask(id:number){
+    await api.delete(`/tasks/${id}`);
+}
+
+export async function updateTask(id: number, completed: boolean){
+    const response = await api.put(`/tasks/${id}`, { completed });
+    return response.data;
 }
